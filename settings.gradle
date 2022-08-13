@@ -1,1 +1,4 @@
 rootProject.name = 'musinsa-test'
+
+include 'musinsa-app'
+include 'musinsa-database'
