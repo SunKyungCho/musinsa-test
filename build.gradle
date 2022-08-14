@@ -27,18 +27,12 @@ subprojects{
     }
 
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-        runtimeOnly 'com.h2database:h2'
-        runtimeOnly 'mysql:mysql-connector-java'
+        implementation "org.springframework.boot:spring-boot-configuration-processor"
+        implementation 'org.springframework.boot:spring-boot-starter'
+        compileOnly 'org.projectlombok:lombok'
+        testCompileOnly 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
-        testImplementation 'org.testcontainers:junit-jupiter'
-        testImplementation 'org.testcontainers:mysql'
-    }
-
-    dependencyManagement {
-        imports {
-            mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
-        }
     }
 
     tasks.named('test') {

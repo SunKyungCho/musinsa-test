@@ -1,1 +1,23 @@
 
+spring:
+  datasource:
+    url: jdbc:h2:file:./musinsa-database/data/musinsa-database;AUTO_SERVER=TRUE
+    username: skcho
+    password: skcho
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate.format_sql: true
+
+
+logging:
+  level:
+    org:
+      springframework:
+        jdbc:
+          core:
+            JdbcTemplate: debug

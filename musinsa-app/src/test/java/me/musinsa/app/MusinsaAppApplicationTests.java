@@ -1,10 +1,10 @@
-package me.test.musinsatest;
+package me.musinsa.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MusinsaTestApplicationTests {
+class MusinsaAppApplicationTests {
 
     @Test
     void contextLoads() {
