@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface ProductQueryRepository {
 
-    List<Product> findLowestPrices(List<String> brands);
+    List<Product> findBrandLowestCategory(List<String> brands);
+
 }

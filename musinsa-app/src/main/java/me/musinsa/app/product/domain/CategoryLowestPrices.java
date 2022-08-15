@@ -7,20 +7,20 @@ import java.util.Map;
 
 public class CategoryLowestPrices {
 
-    private Map<String, Product> prices = new HashMap<>();
+    private final Map<String, Product> prices = new HashMap<>();
     private int total = 0;
 
     public void add(Product product) {
-        if(!prices.containsKey(product.getCategory())) {
-            prices.put(product.getCategory(), product);
-            total += product.getPrice();
+        if(!prices.containsKey(product.category())) {
+            prices.put(product.category(), product);
+            total += product.price();
             return;
         }
-        Product lowest = prices.get(product.getCategory());
-        if(product.getPrice() < lowest.getPrice()) {
-            total -= lowest.getPrice();
-            total += product.getPrice();
-            prices.put(product.getCategory(), product);
+        Product lowest = prices.get(product.category());
+        if(product.price() < lowest.price()) {
+            total -= lowest.price();
+            total += product.price();
+            prices.put(product.category(), product);
         }
     }
 
