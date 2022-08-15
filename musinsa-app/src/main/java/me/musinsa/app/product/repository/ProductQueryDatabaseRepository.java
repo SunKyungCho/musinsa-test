@@ -1,10 +1,11 @@
 package me.musinsa.app.product.repository;
 
 import me.musinsa.app.product.domain.Product;
+import me.musinsa.app.product.domain.ProductPrice;
+import me.musinsa.database.product.domain.ProductEntity;
 import me.musinsa.database.product.repository.query.ProductDatabaseQueryRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductQueryDatabaseRepository implements ProductQueryRepository {
 
@@ -14,10 +15,24 @@ public class ProductQueryDatabaseRepository implements ProductQueryRepository {
         this.repository = repository;
     }
 
-    public List<Product> findLowestPrices(List<String> brands) {
+    public List<Product> findBrandLowestCategory(List<String> brands) {
         return repository.findByBrandIn(brands).stream()
                 .map(entity -> new Product(entity.getBrand(), entity.getCategory(), entity.getPrice()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
+    @Override
+    public ProductPrice findMaxAndMinBrands(String category) {
+        List<ProductEntity> categoryMaxAndMinPrice = repository.findCategoryMaxAndMinPrice(category);
+        ProductPrice productPrice = new ProductPrice();
+        for (ProductEntity productEntity : categoryMaxAndMinPrice) {
+            if(productEntity.isCategoryMax()) {
+                productPrice.setMax(new Product(productEntity.getBrand(), productEntity.getCategory(), productEntity.getPrice()));
+            }
+            if(productEntity.isCategoryMin()) {
+                productPrice.setMin(new Product(productEntity.getBrand(), productEntity.getCategory(), productEntity.getPrice()));
+            }
+        }
+        return productPrice;
+    }
 }

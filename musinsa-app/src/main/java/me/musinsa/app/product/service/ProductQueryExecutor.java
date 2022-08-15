@@ -3,6 +3,7 @@ package me.musinsa.app.product.service;
 import me.musinsa.app.product.domain.BrandCategoryLowestPrices;
 import me.musinsa.app.product.domain.CategoryLowestPrices;
 import me.musinsa.app.product.domain.Product;
+import me.musinsa.app.product.domain.ProductPrice;
 import me.musinsa.app.product.repository.ProductQueryRepository;
 
 import java.util.List;
@@ -31,5 +32,9 @@ public class ProductQueryExecutor {
                 .mapToInt(Product::price)
                 .sum();
         return new BrandCategoryLowestPrices(brand, sum);
+    }
+
+    public ProductPrice findMaxMinBrandByCategory(String category) {
+        return productQueryRepository.findMaxAndMinBrands(category);
     }
 }

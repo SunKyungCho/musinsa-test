@@ -12,7 +12,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @DataJpaTest
 @Sql("/product_sample.sql")
 class ProductEntityDatabaseQueryRepositoryTest {
@@ -39,4 +38,30 @@ class ProductEntityDatabaseQueryRepositoryTest {
         ProductEntity productEntity = expected.get(0);
         assertThat(productEntity.getPrice()).isEqualTo(11200);
     }
+
+    @Test
+    @DisplayName("카테고리 이름으로 최소, 최대 가격을 조회한다.")
+    void category_max_min_brand_test() {
+        List<ProductEntity> result = repository.findCategoryMaxAndMinPrice("상의");
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(2);
+        for (ProductEntity productEntity : result) {
+            if(productEntity.isCategoryMax()) {
+                assertThat(productEntity.getBrand()).isEqualTo("I");
+                assertThat(productEntity.getPrice()).isEqualTo(11400);
+            } else if(productEntity.isCategoryMin()) {
+                assertThat(productEntity.getBrand()).isEqualTo("C");
+                assertThat(productEntity.getPrice()).isEqualTo(10000);
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 카테고리 조회시 빈 리스트를 리턴한다.")
+    void test() {
+        List<ProductEntity> result = repository.findCategoryMaxAndMinPrice("없음");
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(0);
+    }
+
 }
