@@ -25,6 +25,30 @@ public class ProductEntity {
         return productId;
     }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setCategoryMin(boolean categoryMin) {
+        this.categoryMin = categoryMin;
+    }
+
+    public void setCategoryMax(boolean categoryMax) {
+        this.categoryMax = categoryMax;
+    }
+
+    public void setBrandCategoryMin(boolean brandCategoryMin) {
+        this.brandCategoryMin = brandCategoryMin;
+    }
+
     public String getCategory() {
         return category;
     }

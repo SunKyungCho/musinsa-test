@@ -1,4 +1,4 @@
-package me.musinsa.app.product.service;
+package me.musinsa.app.product.service.query;
 
 import me.musinsa.app.product.domain.BrandCategoryLowestPrices;
 import me.musinsa.app.product.domain.CategoryLowestPrices;
@@ -29,7 +29,7 @@ public class ProductQueryExecutor {
     public BrandCategoryLowestPrices findBrandLowestTotalPrice(String brand) {
         List<Product> products = productQueryRepository.findBrandLowestCategory(List.of(brand));
         int sum = products.stream()
-                .mapToInt(Product::price)
+                .mapToInt(Product::getPrice)
                 .sum();
         return new BrandCategoryLowestPrices(brand, sum);
     }

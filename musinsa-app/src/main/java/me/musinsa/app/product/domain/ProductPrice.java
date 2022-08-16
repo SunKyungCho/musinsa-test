@@ -20,4 +20,11 @@ public class ProductPrice {
     public Product getMin() {
         return min;
     }
+
+    public boolean hasMax() {
+        return max != null;
+    }
+    public boolean hasMin() {
+        return min != null;
+    }
 }

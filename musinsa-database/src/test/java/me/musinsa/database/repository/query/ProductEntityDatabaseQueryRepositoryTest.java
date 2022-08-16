@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -63,5 +64,15 @@ class ProductEntityDatabaseQueryRepositoryTest {
         assertThat(result).isNotNull();
         assertThat(result).hasSize(0);
     }
+
+    @Test
+    @DisplayName("입력된 브랜드 카테고리의 최저가를 조회한다. ")
+    void brand_category_lowest_price() {
+        ProductEntity result = repository.findBrandCategoryLowest("A", "상의");
+        assertThat(result).isNotNull();
+        assertThat(result.getBrand()).isEqualTo("A");
+        assertThat(result.getPrice()).isEqualTo(11200);
+    }
+
 
 }

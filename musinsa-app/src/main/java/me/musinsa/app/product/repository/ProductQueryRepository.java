@@ -8,6 +8,5 @@ import java.util.List;
 public interface ProductQueryRepository {
 
     List<Product> findBrandLowestCategory(List<String> brands);
-
     ProductPrice findMaxAndMinBrands(String category);
 }

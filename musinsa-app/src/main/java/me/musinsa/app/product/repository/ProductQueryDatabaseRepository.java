@@ -17,7 +17,7 @@ public class ProductQueryDatabaseRepository implements ProductQueryRepository {
 
     public List<Product> findBrandLowestCategory(List<String> brands) {
         return repository.findByBrandIn(brands).stream()
-                .map(entity -> new Product(entity.getBrand(), entity.getCategory(), entity.getPrice()))
+                .map(entity -> new Product(entity.getProductId(), entity.getBrand(), entity.getCategory(), entity.getPrice()))
                 .toList();
     }
 
@@ -26,11 +26,11 @@ public class ProductQueryDatabaseRepository implements ProductQueryRepository {
         List<ProductEntity> categoryMaxAndMinPrice = repository.findCategoryMaxAndMinPrice(category);
         ProductPrice productPrice = new ProductPrice();
         for (ProductEntity productEntity : categoryMaxAndMinPrice) {
-            if(productEntity.isCategoryMax()) {
-                productPrice.setMax(new Product(productEntity.getBrand(), productEntity.getCategory(), productEntity.getPrice()));
+            if (productEntity.isCategoryMax()) {
+                productPrice.setMax(new Product(productEntity.getProductId(), productEntity.getBrand(), productEntity.getCategory(), productEntity.getPrice()));
             }
-            if(productEntity.isCategoryMin()) {
-                productPrice.setMin(new Product(productEntity.getBrand(), productEntity.getCategory(), productEntity.getPrice()));
+            if (productEntity.isCategoryMin()) {
+                productPrice.setMin(new Product(productEntity.getProductId(), productEntity.getBrand(), productEntity.getCategory(), productEntity.getPrice()));
             }
         }
         return productPrice;
