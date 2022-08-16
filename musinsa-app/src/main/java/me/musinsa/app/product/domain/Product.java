@@ -8,9 +8,9 @@ public class Product {
     private String category;
     private String brand;
     private int price;
-    private boolean categoryMin;
-    private boolean categoryMax;
-    private boolean brandCategoryMin;
+
+    public Product() {
+    }
 
     public Product(String category, String brand, int price) {
         this.category = category;
@@ -68,29 +68,5 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public boolean isCategoryMin() {
-        return categoryMin;
-    }
-
-    public void setCategoryMin(boolean categoryMin) {
-        this.categoryMin = categoryMin;
-    }
-
-    public boolean isCategoryMax() {
-        return categoryMax;
-    }
-
-    public void setCategoryMax(boolean categoryMax) {
-        this.categoryMax = categoryMax;
-    }
-
-    public boolean isBrandCategoryMin() {
-        return brandCategoryMin;
-    }
-
-    public void setBrandCategoryMin(boolean brandCategoryMin) {
-        this.brandCategoryMin = brandCategoryMin;
     }
 }

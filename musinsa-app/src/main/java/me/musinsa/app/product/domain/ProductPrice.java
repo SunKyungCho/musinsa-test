@@ -5,6 +5,9 @@ public class ProductPrice {
     private Product max;
     private Product min;
 
+    public ProductPrice() {
+    }
+
     public void setMax(Product max) {
         this.max = max;
     }
